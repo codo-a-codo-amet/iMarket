@@ -20,11 +20,15 @@ public class user {
     private Date create_time;
 
     public user() {
-        username = "";
-        email = "";
-        password = "";
     }
 
+    public user(int id, String username, String email, String password, Date create_time) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.create_time = create_time;
+    } 
     
     public int getId() {
         return id;

@@ -5,7 +5,6 @@
  */
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,12 +12,14 @@ import java.util.List;
  * @author walter
  */
 public interface IAcctionDB {
-    
-    public void List();
-    
+
+    public List<?> List();
+
+    public List<?> ListBy();
+
     public Boolean Create();
-    
+
     public Boolean Update();
-    
-    public boolean Delete();
+
+    public Boolean Delete();
 }

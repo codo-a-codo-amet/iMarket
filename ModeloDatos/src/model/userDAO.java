@@ -10,23 +10,29 @@ import java.util.List;
 
 /**
  * En esta clase estan los metodos para comunicarse con la Base de datos
+ *
  * @author walter
  */
-public class userDAO extends user implements IAcctionDB{
+public class userDAO extends user implements IAcctionDB {
+
     List lista;
 
     public userDAO() {
         lista = new ArrayList();
-        
+
     }
 
-    
     @Override
-    public void List() {
+    public List<user> List() {
         System.out.println("Listar usuarios");
         lista.add("usuario 1");
         lista.add("usuario 2");
-        System.out.println("userneme: "+lista.get(1));
+        return lista;
+    }
+
+    @Override
+    public List<user> ListBy() {
+        return null;
     }
 
     @Override
@@ -40,8 +46,8 @@ public class userDAO extends user implements IAcctionDB{
     }
 
     @Override
-    public boolean Delete() {
+    public Boolean Delete() {
         return true;
     }
-    
+
 }
