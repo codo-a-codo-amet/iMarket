@@ -15,6 +15,8 @@ public interface IMasterController {
     
     public void removeControllerFromStack();
     
+    public boolean stackOfControllersIsEmpty();
     
+    public Controller peekTheStack();
     
 }

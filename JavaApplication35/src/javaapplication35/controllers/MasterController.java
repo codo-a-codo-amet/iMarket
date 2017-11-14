@@ -16,7 +16,9 @@ public class MasterController implements IMasterController{
     Stack <Controller> controllers;
     public MasterController() {
         controllers = new Stack<>();
-        
+        if (stackOfControllersIsEmpty()){
+            addControllerToStack(new Controller("Inicial"));
+        }
     }
 
     public void start() {
@@ -26,12 +28,32 @@ public class MasterController implements IMasterController{
 
     @Override
     public void addControllerToStack(Controller controller) {
+        controller.loadingController();
+        if(!stackOfControllersIsEmpty()){
+            controllers.peek().hideController();
+        }
         controllers.push(controller);
+        controllers.peek().showController();
     }
 
     @Override
     public void removeControllerFromStack() {
-        controllers.pop();
+        controllers.peek().killingController();
+        if (!peekTheStack().getControllerName().equalsIgnoreCase("inicial")){
+            controllers.pop();
+        }
+        controllers.peek().showController();
+        
+    }
+
+    @Override
+    public boolean stackOfControllersIsEmpty() {
+        return controllers.isEmpty();
+    }
+
+    @Override
+    public Controller peekTheStack() {
+        return controllers.peek();
     }
 
     

@@ -18,7 +18,9 @@ public class JavaApplication35 {
      */
     public static void main(String[] args) {
         MasterController controller = new MasterController();
-        controller.start();
+        System.out.println("El controlador cargado es "+controller.peekTheStack());
+        controller.removeControllerFromStack();
+        System.out.println("El controlador cargado es "+controller.peekTheStack());
     }
     
 }
