@@ -13,13 +13,13 @@ import java.util.List;
  */
 public interface IAcctionDB {
 
-    public List<?> List();
+    public List<?> List(Object obj);
 
-    public List<?> ListBy();
+    public List<?> ListBy(int ID);
 
-    public Boolean Create();
+    public Boolean Create(Object obj);
 
-    public Boolean Update();
+    public Boolean Update(Object obj);
 
-    public Boolean Delete();
+    public Boolean Delete(int ID);
 }

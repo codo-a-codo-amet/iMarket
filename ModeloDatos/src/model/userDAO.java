@@ -5,8 +5,7 @@
  */
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * En esta clase estan los metodos para comunicarse con la Base de datos
@@ -23,31 +22,37 @@ public class userDAO extends user implements IAcctionDB {
     }
 
     @Override
-    public List<user> List() {
-        System.out.println("Listar usuarios");
-        lista.add("usuario 1");
-        lista.add("usuario 2");
+    public List<user> List(Object obj) {
+        user u = (user) obj;
+        lista.add(u.getUsername());
+        
         return lista;
     }
 
     @Override
-    public List<user> ListBy() {
+    public List<?> ListBy(int ID) {
+        return lista;
+    }
+
+    @Override
+    public Boolean Create(Object obj) {
         return null;
     }
 
     @Override
-    public Boolean Create() {
-        return true;
+    public Boolean Update(Object obj) {
+        return null;
     }
 
     @Override
-    public Boolean Update() {
-        return true;
+    public Boolean Delete(int ID) {
+        return null;
     }
 
-    @Override
-    public Boolean Delete() {
-        return true;
-    }
-
+    
+    
+    
+    
+    
+    
 }
