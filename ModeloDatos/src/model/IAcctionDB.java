@@ -12,7 +12,14 @@ import java.util.List;
  * @author walter
  */
 public interface IAcctionDB {
-
+    
+    /**
+     * Metodo que sirve para listar todos los registro de una tabla de BD
+     * 
+     * @author walter
+     * @param obj
+     * @return una lista
+     */
     public List<?> List(Object obj);
 
     public List<?> ListBy(int ID);

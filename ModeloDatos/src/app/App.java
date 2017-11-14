@@ -5,7 +5,7 @@
  */
 package app;
 
-import model.userDAO;
+import model.UserDAO;
 
 /**
  *
@@ -18,7 +18,7 @@ public class App {
      */
     public static void main(String[] args) {
         System.out.println("Hola Mundo!!!");
-        userDAO u = new userDAO();
+        UserDAO u = new UserDAO();
         u.List();
         System.out.println("Chau Mundo!!!");
     }

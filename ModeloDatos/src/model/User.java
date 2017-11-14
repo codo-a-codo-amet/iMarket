@@ -8,10 +8,10 @@ package model;
 import java.util.Date;
 
 /**
- * En esta clase estan todas las propiedades del objeto user
+ * En esta clase estan todas las propiedades del objeto User
  * @author walter
  */
-public class user {
+public class User {
 
     private int id;
     private String username;
@@ -19,10 +19,10 @@ public class user {
     private String password;
     private Date create_time;
 
-    public user() {
+    public User() {
     }
 
-    public user(int id, String username, String email, String password, Date create_time) {
+    public User(int id, String username, String email, String password, Date create_time) {
         this.id = id;
         this.username = username;
         this.email = email;

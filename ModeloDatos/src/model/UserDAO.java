@@ -12,18 +12,18 @@ import java.util.*;
  *
  * @author walter
  */
-public class userDAO extends user implements IAcctionDB {
+public class UserDAO extends User implements IAcctionDB {
 
     List lista;
 
-    public userDAO() {
+    public UserDAO() {
         lista = new ArrayList();
 
     }
-
+    
     @Override
-    public List<user> List(Object obj) {
-        user u = (user) obj;
+    public List<User> List(Object obj) {
+        User u = (User) obj;
         lista.add(u.getUsername());
         
         return lista;
