@@ -38,8 +38,9 @@ public class MasterController implements IMasterController{
 
     @Override
     public void removeControllerFromStack() {
-        controllers.peek().killingController();
+        
         if (!peekTheStack().getControllerName().equalsIgnoreCase("inicial")){
+            controllers.peek().killingController();
             controllers.pop();
         }
         controllers.peek().showController();
