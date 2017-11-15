@@ -12,11 +12,11 @@ import java.util.*;
  *
  * @author walter
  */
-public class UserDAO extends User implements IAcctionDB {
+public class DAOUser extends User implements IAcctionDB {
 
     List lista;
 
-    public UserDAO() {
+    public DAOUser() {
         lista = new ArrayList();
 
     }
@@ -30,7 +30,7 @@ public class UserDAO extends User implements IAcctionDB {
     }
 
     @Override
-    public List<?> ListBy(int ID) {
+    public List<?> ListBy(String campo, String criterio) {
         return lista;
     }
 
@@ -45,7 +45,7 @@ public class UserDAO extends User implements IAcctionDB {
     }
 
     @Override
-    public Boolean Delete(int ID) {
+    public Boolean Delete(Object obj) {
         return null;
     }
 

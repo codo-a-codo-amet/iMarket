@@ -5,7 +5,8 @@
  */
 package app;
 
-import model.UserDAO;
+import model.DAOPay;
+import model.Pay;
 
 /**
  *
@@ -18,8 +19,12 @@ public class App {
      */
     public static void main(String[] args) {
         System.out.println("Hola Mundo!!!");
-        UserDAO u = new UserDAO();
-        u.List();
+        Pay pay = new Pay();
+        DAOPay p = new DAOPay();
+        
+        pay.setDescripcion("Vendedor");
+        System.out.println("El resultado es "+p.Create(pay));
+        
         System.out.println("Chau Mundo!!!");
     }
     
