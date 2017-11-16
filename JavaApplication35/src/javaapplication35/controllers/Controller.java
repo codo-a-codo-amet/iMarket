@@ -14,7 +14,7 @@ public class Controller implements IController{
 
     private String controllerName;
     
-    private Object mockView;
+    private MyView mockView;
 
    
 
@@ -48,11 +48,11 @@ public class Controller implements IController{
         this.controllerName = controllerName;
     }
     
-     public Object getMockView() {
+     public MyView getMockView() {
         return mockView;
     }
 
-    public void setMockView(Object mockView) {
+    public void setMockView(MyView mockView) {
         this.mockView = mockView;
     }
     

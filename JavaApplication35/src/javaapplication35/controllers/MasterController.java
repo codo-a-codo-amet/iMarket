@@ -14,13 +14,20 @@ import java.util.Stack;
  */
 public class MasterController implements IMasterController{
     Stack <Controller> controllers;
-    public MasterController() {
+    private static MasterController masterController;
+    private MasterController() {
         controllers = new Stack<>();
         if (stackOfControllersIsEmpty()){
             addControllerToStack(new Controller("Inicial"));
         }
+    }       
+    public static MasterController getInstance(){
+            if (masterController == null){
+                masterController = new MasterController();   
+            }
+            return masterController;
     }
-
+    
     public void start() {
         
         
