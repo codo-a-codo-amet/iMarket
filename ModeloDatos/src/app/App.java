@@ -5,8 +5,10 @@
  */
 package app;
 
-import model.DAOPay;
-import model.Pay;
+import controller.controllerApp;
+import controller.controllerPay;
+import view.ViewConsole;
+import view.viewPay;
 
 /**
  *
@@ -18,14 +20,12 @@ public class App {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Hola Mundo!!!");
-        Pay pay = new Pay();
-        DAOPay p = new DAOPay();
+//        controllerApp unControlador = new controllerApp(new ViewConsole());
+//        unControlador.run();
         
-        pay.setDescripcion("Vendedor");
-        System.out.println("El resultado es "+p.Create(pay));
-        
-        System.out.println("Chau Mundo!!!");
+        controllerPay controllerPay = new controllerPay(new viewPay());
+        controllerPay.run();
+
     }
     
 }

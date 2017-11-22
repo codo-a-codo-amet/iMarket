@@ -33,7 +33,7 @@ public class DAOPay implements IAcctionDB{
             respuesta = Boolean.TRUE;
             cn.close();            
         }catch(ClassNotFoundException | SQLException ex){
-            System.out.println("Se produjo un error "+ex.getMessage());
+            System.out.println("Se produjo un error al conectarse: "+ex.getMessage());
         }
         
         return respuesta;

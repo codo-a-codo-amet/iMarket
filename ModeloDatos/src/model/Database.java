@@ -17,9 +17,9 @@ public class Database {
 
     public Database() {
         this.driver = "com.mysql.jdbc.Driver";
-        this.url = "jdbc:mysql://localhost:3306";
+        this.url = "jdbc:mysql://localhost:3306/iMarket";
         this.usuario = "root";
-        this.contrasenia = "Miowac-2003 ";
+        this.contrasenia = "Miowac-2003";
     }
 
     public String getDriver() {
