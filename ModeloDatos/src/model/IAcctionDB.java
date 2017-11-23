@@ -20,13 +20,13 @@ public interface IAcctionDB {
      * @param obj
      * @return una lista
      */
-    public Boolean Create(Object obj);
+    public Boolean Create(DBManagedObject obj);
 
-    public Boolean Update(Object obj);
+    public Boolean Update(DBManagedObject obj);
 
-    public Boolean Delete(Object obj);
+    public Boolean Delete(DBManagedObject obj);
 
-    public List<?> List(Object obj);
+    public List<?> List(DBManagedObject obj);
 
     public List<?> ListBy(String campo, String criterio);
 

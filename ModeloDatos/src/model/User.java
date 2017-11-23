@@ -5,13 +5,14 @@
  */
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * En esta clase estan todas las propiedades del objeto User
  * @author walter
  */
-public class User {
+public class User extends DBManagedObject{
 
     private int id;
     private String username;
@@ -20,14 +21,19 @@ public class User {
     private Date create_time;
 
     public User() {
+        nameTable = "user";
+        listColumns = new ArrayList<>();
+        listColumns.add("ID");
+        listColumns.add("email");
+        listColumns.add("username");
+        listColumns.add("password");
     }
 
-    public User(int id, String username, String email, String password, Date create_time) {
+    public User(int id, String username, String email, String password) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.create_time = create_time;
     } 
     
     public int getId() {

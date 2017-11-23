@@ -5,38 +5,59 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
+
 
 /**
  * En esta clase estan los metodos para comunicarse con la Base de datos
  *
  * @author walter
  */
-public class DAOUser extends User implements IAcctionDB {
-
+public class DAOUser implements IAcctionDB {
+    Database db = new Database();
     List lista;
 
     public DAOUser() {
         lista = new ArrayList();
-
     }
-    
+
     @Override
-    public List<User> List(Object obj) {
-        User u = (User) obj;
-        lista.add(u.getUsername());
+    public Boolean Create(DBManagedObject obj) {
+        Connection cn;
+        PreparedStatement pst;
+        String valores = "?";
         
-        return lista;
-    }
-
-    @Override
-    public List<?> ListBy(String campo, String criterio) {
-        return lista;
-    }
-
-    @Override
-    public Boolean Create(Object obj) {
-        return null;
+        for (int i = 0; i < obj.getColumns().size(); i++) {
+            if (i<obj.getColumns().size()){
+                valores += ",";
+            }
+        }
+        
+        String sql = "INSERT INTO "+obj.getTableName() +" ("+obj.getColumns() +") VALUES ("+valores+")";
+        Boolean respuesta = Boolean.FALSE;
+        
+        try{
+            Class.forName(db.getDriver());
+            cn = DriverManager.getConnection(db.getUrl(), db.getUsuario(), db.getContrasenia());
+            
+            pst = cn.prepareStatement(sql);
+ 
+            pst.setString(1, obj.getDescripcion());
+            
+            int filas = pst.executeUpdate();
+            
+            respuesta = Boolean.TRUE;
+            
+            cn.close();            
+        }catch(ClassNotFoundException | SQLException ex){
+            System.out.println("Se produjo un error al conectarse: "+ex.getMessage());
+        }
+        
+        return respuesta;
     }
 
     @Override
@@ -48,6 +69,17 @@ public class DAOUser extends User implements IAcctionDB {
     public Boolean Delete(Object obj) {
         return null;
     }
+
+    @Override
+    public List<?> List(Object obj) {
+        return null;
+    }
+
+    @Override
+    public List<?> ListBy(String campo, String criterio) {
+        return null;
+    }
+    
 
     
     
