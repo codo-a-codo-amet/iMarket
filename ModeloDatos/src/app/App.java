@@ -20,11 +20,11 @@ public class App {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        controllerApp unControlador = new controllerApp(new ViewConsole());
-//        unControlador.run();
+        controllerApp unControlador = new controllerApp(new ViewConsole());
+        unControlador.run();
         
-        controllerPay controllerPay = new controllerPay(new viewPay());
-        controllerPay.run();
+//        controllerPay controllerPay = new controllerPay(new viewPay());
+//        controllerPay.run();
 
     }
     

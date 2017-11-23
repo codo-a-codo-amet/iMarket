@@ -5,8 +5,8 @@
  */
 package controller;
 
-import java.sql.Date;
 import model.DAOPay;
+import model.DBManagedObject;
 import model.Pay;
 import view.viewPay;
 
@@ -32,12 +32,12 @@ public class controllerPay {
         unaVista.EscribirFormulario();
         oPay.setDescripcion(unaVista.getDes());
         
-        if (!objPay.Create(oPay)){
-            System.out.println("Error");
-        }else{
-            System.out.println("Se ingreso correctamente");
-            System.out.println("Forma de Pago: "+unaVista.getDes());
-        }
+//        if (!objPay.Create()){
+//            System.out.println("Error");
+//        }else{
+//            System.out.println("Se ingreso correctamente");
+//            System.out.println("Forma de Pago: "+unaVista.getDes());
+//        }
         
     }
     

@@ -14,7 +14,7 @@ import java.util.*;
 public class DBManagedObject {
 
     public List<String> listColumns;
-    public List<String> listValues;
+    public List<Pair<String, String>> listValues;
     public List<String> listAll;
     public String nameTable;
 
@@ -26,7 +26,7 @@ public class DBManagedObject {
         return listColumns;
     }
 
-    public List<String> getValues() {
+    public List<Pair<String,String>> getValues() {
         return listValues;
     }
 

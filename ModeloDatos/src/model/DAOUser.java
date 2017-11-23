@@ -46,7 +46,10 @@ public class DAOUser implements IAcctionDB {
             
             pst = cn.prepareStatement(sql);
  
-            pst.setString(1, obj.getDescripcion());
+            for (int i = 0; i < obj.listColumns.size(); i++) {
+                pst.setString(i, "");
+            }
+            
             
             int filas = pst.executeUpdate();
             
@@ -61,22 +64,22 @@ public class DAOUser implements IAcctionDB {
     }
 
     @Override
-    public Boolean Update(Object obj) {
-        return null;
-    }
-
-    @Override
-    public Boolean Delete(Object obj) {
-        return null;
-    }
-
-    @Override
-    public List<?> List(Object obj) {
-        return null;
-    }
-
-    @Override
     public List<?> ListBy(String campo, String criterio) {
+        return null;
+    }
+
+    @Override
+    public Boolean Update(DBManagedObject obj) {
+        return null;
+    }
+
+    @Override
+    public Boolean Delete(DBManagedObject obj) {
+        return null;
+    }
+
+    @Override
+    public List<?> List(DBManagedObject obj) {
         return null;
     }
     
