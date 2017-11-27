@@ -8,6 +8,8 @@ package model;
 /**
  *
  * @author alumno
+ * @param <L>
+ * @param <R>
  */
 public class Pair<L, R> {
 

@@ -38,6 +38,7 @@ public class DAOUser implements IAcctionDB {
         }
         
         String sql = "INSERT INTO "+obj.getTableName() +" ("+obj.getColumns() +") VALUES ("+valores+")";
+        System.out.println("sql "+sql);
         Boolean respuesta = Boolean.FALSE;
         
         try{
@@ -46,7 +47,7 @@ public class DAOUser implements IAcctionDB {
             
             pst = cn.prepareStatement(sql);
  
-            for (int i = 0; i < obj.listColumns.size(); i++) {
+            for (int i = 1; i < obj.listColumns.size(); i++) {
                 pst.setString(i, "");
             }
             
