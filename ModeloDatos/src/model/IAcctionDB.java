@@ -13,13 +13,21 @@ import java.util.List;
  */
 public interface IAcctionDB {
 
-    public List<?> List(Object obj);
+    /**
+     * Metodo que sirve para listar todos los registro de una tabla de BD
+     *
+     * @author walter
+     * @param obj
+     * @return una lista
+     */
+    public Boolean Create(DBManagedObject obj);
 
-    public List<?> ListBy(int ID);
+    public Boolean Update(DBManagedObject obj);
 
-    public Boolean Create(Object obj);
+    public Boolean Delete(DBManagedObject obj);
 
-    public Boolean Update(Object obj);
+    public List<?> List(DBManagedObject obj);
 
-    public Boolean Delete(int ID);
+    public List<?> ListBy(String campo, String criterio);
+
 }
