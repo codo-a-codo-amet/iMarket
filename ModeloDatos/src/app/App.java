@@ -7,6 +7,7 @@ package app;
 
 import controller.controllerApp;
 import controller.controllerPay;
+import controller.controllerUser;
 import java.util.ArrayList;
 import java.util.List;
 import model.DAOUser;
@@ -14,6 +15,7 @@ import model.DBManagedObject;
 import model.Pair;
 import view.ViewConsole;
 import view.viewPay;
+import view.viewUser;
 
 /**
  *
@@ -30,14 +32,14 @@ public class App {
 
 //        controllerPay controllerPay = new controllerPay(new viewPay());
 //        controllerPay.run();
+
+        controllerUser controllerUser = new controllerUser(new viewUser());
+        controllerUser.run();
+
+
         DAOUser ou = new DAOUser();
         DBManagedObject db = new DBManagedObject();
         
-        db.getColumns().add("h");
-//        db.getColumns().add("o");
-//        db.getColumns().add("l");
-//        db.getColumns().add("a");
-
         ArrayList<Pair> a = new ArrayList<>();
 
         Pair p = new Pair("String", "Hola");
@@ -45,8 +47,7 @@ public class App {
         a.add(p);
         a.add(new Pair("String", "Chau"));
         
-        System.out.println("y "+db.getColumns().get(1));
-        //List<Pair<String, String>> listValues = db.listValues;
+        System.out.println("y "+a);
 
     }
 
