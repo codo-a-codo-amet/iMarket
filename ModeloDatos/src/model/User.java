@@ -18,12 +18,10 @@ public class User extends DBManagedObject{
     private String username;
     private String email;
     private String password;
-    private Date create_time;
 
     public User() {
         nameTable = "user";
         listColumns = new ArrayList<>();
-        listColumns.add("ID");
         listColumns.add("email");
         listColumns.add("username");
         listColumns.add("password");
@@ -68,13 +66,6 @@ public class User extends DBManagedObject{
         this.password = password;
     }
 
-    public Date getCreate_time() {
-        return create_time;
-    }
-
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
-    }
     
     
     

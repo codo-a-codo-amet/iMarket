@@ -5,12 +5,8 @@
  */
 package model;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
-
 
 /**
  * En esta clase estan los metodos para comunicarse con la Base de datos
@@ -18,6 +14,7 @@ import java.util.*;
  * @author walter
  */
 public class DAOUser implements IAcctionDB {
+
     Database db = new Database();
     List lista;
 
@@ -30,37 +27,54 @@ public class DAOUser implements IAcctionDB {
         Connection cn;
         PreparedStatement pst;
         String valores = "?";
-        
+
         for (int i = 0; i < obj.getColumns().size(); i++) {
-            if (i<obj.getColumns().size()){
+            if (i < obj.getColumns().size()) {
                 valores += ",";
             }
         }
-        
-        String sql = "INSERT INTO "+obj.getTableName() +" ("+obj.getColumns() +") VALUES ("+valores+")";
-        System.out.println("sql "+sql);
+
+        String sql = "INSERT INTO " + obj.getTableName() + " (" + obj.getColumns() + ") VALUES (" + valores + ")";
+
         Boolean respuesta = Boolean.FALSE;
-        
-        try{
+
+        try {
             Class.forName(db.getDriver());
             cn = DriverManager.getConnection(db.getUrl(), db.getUsuario(), db.getContrasenia());
-            
+
             pst = cn.prepareStatement(sql);
- 
+
+            String type = obj.listValues.get(0).getRight();
+
             for (int i = 1; i < obj.listColumns.size(); i++) {
-                pst.setString(i, "");
+                switch (type) {
+                    case "String":
+                        pst.setString(i, obj.listValues.get(i).getLeft());
+                        break;
+                    case "Integer":
+                        pst.setInt(i, Integer.valueOf(obj.listValues.get(i).getLeft()));
+                        break;
+                    case "Boolean":
+                        pst.setBoolean(i, Boolean.valueOf(obj.listValues.get(i).getLeft()));
+                        break;
+                    case "Double":
+                        pst.setDouble(i, Double.valueOf(obj.listValues.get(i).getLeft()));
+                        break;
+                    default:
+
+                }
+
             }
-            
-            
+
             int filas = pst.executeUpdate();
-            
+
             respuesta = Boolean.TRUE;
-            
-            cn.close();            
-        }catch(ClassNotFoundException | SQLException ex){
-            System.out.println("Se produjo un error al conectarse: "+ex.getMessage());
+
+            cn.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("Se produjo un error al conectarse: " + ex.getMessage());
         }
-        
+
         return respuesta;
     }
 
@@ -83,12 +97,5 @@ public class DAOUser implements IAcctionDB {
     public List<?> List(DBManagedObject obj) {
         return null;
     }
-    
 
-    
-    
-    
-    
-    
-    
 }
