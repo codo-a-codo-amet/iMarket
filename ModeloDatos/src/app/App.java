@@ -5,16 +5,11 @@
  */
 package app;
 
-import controller.controllerApp;
-import controller.controllerPay;
 import controller.controllerUser;
 import java.util.ArrayList;
-import java.util.List;
 import model.DAOManager;
 import model.DBManagedObject;
 import model.Pair;
-import view.ViewConsole;
-import view.viewPay;
 import view.viewUser;
 
 /**
@@ -40,14 +35,15 @@ public class App {
         DAOManager ou = DAOManager.getInstance();
         DBManagedObject db = new DBManagedObject();
         
-        ArrayList<Pair> a = new ArrayList<>();
-
-        Pair p = new Pair("String", "Hola");
-        
-        a.add(p);
-        a.add(new Pair("String", "Chau"));
-        
-        System.out.println("y "+a);
+        db.listValues.add(new Pair<>("String", "Hola"));
+//        ArrayList<Pair> a = new ArrayList<>();
+//
+//        Pair p = new Pair("String", "Hola");
+//        
+//        a.add(p);
+//        a.add(new Pair("String", "Chau"));
+//        
+        System.out.println("y "+db.getColumns().get(0));
 
     }
 

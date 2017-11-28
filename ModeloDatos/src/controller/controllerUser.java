@@ -6,7 +6,6 @@
 package controller;
 
 import model.DAOManager;
-import model.DBManagedObject;
 import model.User;
 import view.viewUser;
 
@@ -36,7 +35,7 @@ public class controllerUser {
         oUser.setEmail(unaVista.getEmail());
         oUser.setPassword(unaVista.getPassword());
         
-        System.out.println("yy "+oUser);
+        System.out.println("yy "+oUser.getUsername());
         
         if (!objUser.Create(oUser)){
             System.out.println("Error");

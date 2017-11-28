@@ -22,6 +22,7 @@ public class DAOManager implements IAcctionDB {
 
     private DAOManager() {
         lista = new ArrayList();
+        
     }
 
     public static DAOManager getInstance(){
@@ -54,7 +55,7 @@ public class DAOManager implements IAcctionDB {
 
             pst = cn.prepareStatement(sql);
 
-            for (int i = 1; i < obj.listColumns.size(); i++) {
+            for (int i = 0; i < obj.listColumns.size(); i++) {
 
                 String type = obj.listValues.get(i).getRight();
 
