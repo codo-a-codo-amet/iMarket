@@ -10,7 +10,7 @@ import controller.controllerPay;
 import controller.controllerUser;
 import java.util.ArrayList;
 import java.util.List;
-import model.DAOUser;
+import model.DAOManager;
 import model.DBManagedObject;
 import model.Pair;
 import view.ViewConsole;
@@ -37,7 +37,7 @@ public class App {
         controllerUser.run();
 
 
-        DAOUser ou = new DAOUser();
+        DAOManager ou = DAOManager.getInstance();
         DBManagedObject db = new DBManagedObject();
         
         ArrayList<Pair> a = new ArrayList<>();

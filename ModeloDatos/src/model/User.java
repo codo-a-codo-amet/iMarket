@@ -6,7 +6,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 /**
  * En esta clase estan todas las propiedades del objeto User
@@ -22,8 +22,8 @@ public class User extends DBManagedObject{
     public User() {
         nameTable = "user";
         listColumns = new ArrayList<>();
-        listColumns.add("email");
         listColumns.add("username");
+        listColumns.add("email");
         listColumns.add("password");
     }
 
@@ -64,6 +64,15 @@ public class User extends DBManagedObject{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public List<Pair<String, String>> getValues() {
+        listValues.add(new Pair<>(username, "String"));
+        listValues.add(new Pair<>(email, "String"));
+        listValues.add(new Pair<>(password, "String"));
+        
+        return listValues;
     }
 
     

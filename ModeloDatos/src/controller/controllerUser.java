@@ -5,7 +5,7 @@
  */
 package controller;
 
-import model.DAOUser;
+import model.DAOManager;
 import model.DBManagedObject;
 import model.User;
 import view.viewUser;
@@ -18,13 +18,13 @@ import view.viewUser;
 public class controllerUser {
 
     protected viewUser unaVista;
-    private DAOUser objUser;
+    private DAOManager objUser;
     private User oUser;
     
     public controllerUser(viewUser Vista) {
         this.unaVista = Vista;
         this.oUser = new User();
-        this.objUser = new DAOUser();
+        this.objUser = DAOManager.getInstance();
         
 
     }

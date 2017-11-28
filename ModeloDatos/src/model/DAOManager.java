@@ -13,15 +13,25 @@ import java.util.*;
  *
  * @author walter
  */
-public class DAOUser implements IAcctionDB {
+public class DAOManager implements IAcctionDB {
 
+    private static DAOManager instance = null;
+    
     Database db = new Database();
     List lista;
 
-    public DAOUser() {
+    private DAOManager() {
         lista = new ArrayList();
     }
 
+    public static DAOManager getInstance(){
+        if(instance == null){
+            instance = new DAOManager();
+        }
+        
+        return instance;
+    }
+    
     @Override
     public Boolean Create(DBManagedObject obj) {
         Connection cn;
@@ -44,9 +54,10 @@ public class DAOUser implements IAcctionDB {
 
             pst = cn.prepareStatement(sql);
 
-            String type = obj.listValues.get(0).getRight();
-
             for (int i = 1; i < obj.listColumns.size(); i++) {
+
+                String type = obj.listValues.get(i).getRight();
+
                 switch (type) {
                     case "String":
                         pst.setString(i, obj.listValues.get(i).getLeft());
@@ -61,7 +72,8 @@ public class DAOUser implements IAcctionDB {
                         pst.setDouble(i, Double.valueOf(obj.listValues.get(i).getLeft()));
                         break;
                     default:
-
+                        System.out.println("Dato no definido");
+                        break;
                 }
 
             }
