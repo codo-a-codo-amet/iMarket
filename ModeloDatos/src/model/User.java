@@ -25,6 +25,8 @@ public class User extends DBManagedObject{
         listColumns.add("username");
         listColumns.add("email");
         listColumns.add("password");
+        
+        listValues = new ArrayList<>();        
     }
 
     public User(int id, String username, String email, String password) {

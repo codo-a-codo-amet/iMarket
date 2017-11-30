@@ -6,10 +6,7 @@
 package app;
 
 import controller.controllerUser;
-import java.util.ArrayList;
-import model.DAOManager;
-import model.DBManagedObject;
-import model.Pair;
+import model.User;
 import view.viewUser;
 
 /**
@@ -27,23 +24,21 @@ public class App {
 
 //        controllerPay controllerPay = new controllerPay(new viewPay());
 //        controllerPay.run();
+        User db = new User();
+
+        db.setUsername("walter ");
+        db.setEmail("w@w.com ");
+        db.setPassword("2344 ");
+
+        for (int i = 0; i < db.listColumns.size(); i++) {
+            System.out.println("cant colum " + i);
+            System.out.println("colum " + db.getColumns().get(i));
+            System.out.println("left " + db.getValues().get(i).getLeft());
+            System.out.println("right " + db.getValues().get(i).getRight());
+        }
 
         controllerUser controllerUser = new controllerUser(new viewUser());
         controllerUser.run();
-
-
-        DAOManager ou = DAOManager.getInstance();
-        DBManagedObject db = new DBManagedObject();
-        
-        db.listValues.add(new Pair<>("String", "Hola"));
-//        ArrayList<Pair> a = new ArrayList<>();
-//
-//        Pair p = new Pair("String", "Hola");
-//        
-//        a.add(p);
-//        a.add(new Pair("String", "Chau"));
-//        
-        System.out.println("y "+db.getColumns().get(0));
 
     }
 

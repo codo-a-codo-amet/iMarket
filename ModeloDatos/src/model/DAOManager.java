@@ -37,15 +37,26 @@ public class DAOManager implements IAcctionDB {
     public Boolean Create(DBManagedObject obj) {
         Connection cn;
         PreparedStatement pst;
-        String valores = "?";
-
-        for (int i = 0; i < obj.getColumns().size(); i++) {
-            if (i < obj.getColumns().size()) {
-                valores += ",";
+        
+        String signo="?";
+        String coma=",";
+        String valores = "";
+        String columnas = "";
+        
+        int cantColumnas = obj.getColumns().size();
+        
+        for (int i = 0; i < cantColumnas; i++) {
+            if (i < cantColumnas) {
+                columnas += obj.getColumns().get(i);
+                valores += signo;
+                if (i<cantColumnas-1){
+                    columnas += coma;
+                    valores += coma;
+                }
             }
         }
 
-        String sql = "INSERT INTO " + obj.getTableName() + " (" + obj.getColumns() + ") VALUES (" + valores + ")";
+        String sql = "INSERT INTO " + obj.getTableName() + " (" + columnas + ") VALUES (" + valores + ")";
 
         Boolean respuesta = Boolean.FALSE;
 
@@ -55,10 +66,12 @@ public class DAOManager implements IAcctionDB {
 
             pst = cn.prepareStatement(sql);
 
-            for (int i = 0; i < obj.listColumns.size(); i++) {
-
+            for (int i = 0; i < cantColumnas; i++) {
+                
                 String type = obj.listValues.get(i).getRight();
-
+                System.out.println("type "+obj.listValues.get(i).getRight());
+                System.out.println("type "+type);
+                
                 switch (type) {
                     case "String":
                         pst.setString(i, obj.listValues.get(i).getLeft());
