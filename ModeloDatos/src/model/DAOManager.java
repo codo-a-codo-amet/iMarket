@@ -86,6 +86,9 @@ public class DAOManager implements IAcctionDB {
                     case "Double":
                         pst.setDouble(i+1, Double.valueOf(obj.listValues.get(i).getLeft()));
                         break;
+                    case "Date":
+                        pst.setDate(i+1, java.sql.Date.valueOf(obj.listValues.get(i).getLeft()));
+                        break;
                     default:
                         System.out.println("Dato no definido");
                         break;
