@@ -5,6 +5,7 @@
  */
 package app;
 
+import controller.controllerPay;
 import controller.controllerUser;
 import controller.controllerUserDetails;
 import controller.controllerUserState;
@@ -40,8 +41,8 @@ public class App {
 //        }
 
         //Para ingresar un usuario
-        controllerUser controllerUser = new controllerUser();
-        controllerUser.run();
+        //controllerUser controllerUser = new controllerUser();
+        //controllerUser.run();
 
         //Para ingresar los datos del usuario
         //controllerUserDetails controllerUserDetails = new controllerUserDetails();
@@ -54,6 +55,12 @@ public class App {
         //Para ingresar los tipos de usuario
         //controllerUserType controllerUserType = new controllerUserType();
         //controllerUserType.run();        
+        
+        //Para ingresar los metodos de Pay (pagos)
+        controllerPay controllerPay = new controllerPay();
+        controllerPay.run();        
+
+
         
     }
 
