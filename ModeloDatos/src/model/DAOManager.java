@@ -69,21 +69,22 @@ public class DAOManager implements IAcctionDB {
             for (int i = 0; i < cantColumnas; i++) {
                 
                 String type = obj.listValues.get(i).getRight();
-                System.out.println("type "+obj.listValues.get(i).getRight());
+                String val = obj.listValues.get(i).getLeft();
+                //System.out.println("type "+obj.listValues.get(i).getRight());
                 System.out.println("type "+type);
                 
                 switch (type) {
                     case "String":
-                        pst.setString(i, obj.listValues.get(i).getLeft());
+                        pst.setString(i+1, obj.listValues.get(i).getLeft());
                         break;
                     case "Integer":
-                        pst.setInt(i, Integer.valueOf(obj.listValues.get(i).getLeft()));
+                        pst.setInt(i+1, Integer.valueOf(obj.listValues.get(i).getLeft()));
                         break;
                     case "Boolean":
-                        pst.setBoolean(i, Boolean.valueOf(obj.listValues.get(i).getLeft()));
+                        pst.setBoolean(i+1, Boolean.valueOf(obj.listValues.get(i).getLeft()));
                         break;
                     case "Double":
-                        pst.setDouble(i, Double.valueOf(obj.listValues.get(i).getLeft()));
+                        pst.setDouble(i+1, Double.valueOf(obj.listValues.get(i).getLeft()));
                         break;
                     default:
                         System.out.println("Dato no definido");

@@ -6,6 +6,7 @@
 package controller;
 
 import model.DAOManager;
+import model.Pair;
 import model.User;
 import view.viewUser;
 
@@ -34,6 +35,8 @@ public class controllerUser {
         oUser.setUsername(unaVista.getUsername());
         oUser.setEmail(unaVista.getEmail());
         oUser.setPassword(unaVista.getPassword());
+        oUser.getValues().get(0).getLeft();
+        oUser.getValues().get(0).getRight();
         
         System.out.println("yy "+oUser.getUsername());
         
