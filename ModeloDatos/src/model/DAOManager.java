@@ -135,7 +135,7 @@ public class DAOManager implements IAcctionDB {
             }
         }
 
-        String sql = "UPDATE " + obj.getTableName() + " SET " + columnas + " = " + valores + " WHERE ID = " + obj.getColumns().get(0);
+        String sql = "UPDATE " + obj.getTableName() + " SET " + columnas + " = " + valores + " WHERE ID = ?";
         System.out.println("sql "+sql);
         Boolean respuesta = Boolean.FALSE;
 
