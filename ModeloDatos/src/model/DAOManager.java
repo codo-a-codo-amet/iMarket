@@ -16,40 +16,40 @@ import java.util.*;
 public class DAOManager implements IAcctionDB {
 
     private static DAOManager instance = null;
-    
+
     Database db = new Database();
     List lista;
 
     private DAOManager() {
         lista = new ArrayList();
-        
+
     }
 
-    public static DAOManager getInstance(){
-        if(instance == null){
+    public static DAOManager getInstance() {
+        if (instance == null) {
             instance = new DAOManager();
         }
-        
+
         return instance;
     }
-    
+
     @Override
     public Boolean Create(DBManagedObject obj) {
         Connection cn;
         PreparedStatement pst;
-        
-        String signo="?";
-        String coma=",";
+
+        String signo = "?";
+        String coma = ",";
         String valores = "";
         String columnas = "";
-        
+
         int cantColumnas = obj.getColumns().size();
-        
+
         for (int i = 0; i < cantColumnas; i++) {
             if (i < cantColumnas) {
                 columnas += obj.getColumns().get(i);
                 valores += signo;
-                if (i<cantColumnas-1){
+                if (i < cantColumnas - 1) {
                     columnas += coma;
                     valores += coma;
                 }
@@ -67,26 +67,26 @@ public class DAOManager implements IAcctionDB {
             pst = cn.prepareStatement(sql);
 
             for (int i = 0; i < cantColumnas; i++) {
-                
+
                 String type = obj.listValues.get(i).getRight();
                 String val = obj.listValues.get(i).getLeft();
-                System.out.println("type "+type);
-                
+                System.out.println("type " + type);
+
                 switch (type) {
                     case "String":
-                        pst.setString(i+1, obj.listValues.get(i).getLeft());
+                        pst.setString(i + 1, obj.listValues.get(i).getLeft());
                         break;
                     case "Integer":
-                        pst.setInt(i+1, Integer.valueOf(obj.listValues.get(i).getLeft()));
+                        pst.setInt(i + 1, Integer.valueOf(obj.listValues.get(i).getLeft()));
                         break;
                     case "Boolean":
-                        pst.setBoolean(i+1, Boolean.valueOf(obj.listValues.get(i).getLeft()));
+                        pst.setBoolean(i + 1, Boolean.valueOf(obj.listValues.get(i).getLeft()));
                         break;
                     case "Double":
-                        pst.setDouble(i+1, Double.valueOf(obj.listValues.get(i).getLeft()));
+                        pst.setDouble(i + 1, Double.valueOf(obj.listValues.get(i).getLeft()));
                         break;
                     case "Date":
-                        pst.setDate(i+1, java.sql.Date.valueOf(obj.listValues.get(i).getLeft()));
+                        pst.setDate(i + 1, java.sql.Date.valueOf(obj.listValues.get(i).getLeft()));
                         break;
                     default:
                         System.out.println("Dato no definido");
@@ -116,27 +116,27 @@ public class DAOManager implements IAcctionDB {
     public Boolean Update(DBManagedObject obj) {
         Connection cn;
         PreparedStatement pst;
-        
-        String signo="?";
-        String coma=",";
+
+        String signo = "?";
+        String coma = ",";
         String valores = "";
         String columnas = "";
-        
+
         int cantColumnas = obj.getColumns().size();
-        
-        for (int i = 1; i < cantColumnas; i++) {
+        System.out.println("cant columnas "+cantColumnas);
+        for (int i = 0; i < cantColumnas-1; i++) {
             if (i < cantColumnas) {
-                columnas += obj.getColumns().get(i);
-                valores += signo;
-                if (i<cantColumnas-1){
+                columnas += obj.getColumns().get(i) + " = " + signo;
+//                valores += signo;
+                if (i > cantColumnas-1) {
                     columnas += coma;
-                    valores += coma;
+                    //valores += coma;
                 }
             }
         }
 
-        String sql = "UPDATE " + obj.getTableName() + " SET " + columnas + " = " + valores + " WHERE ID = ?";
-        System.out.println("sql "+sql);
+        String sql = "UPDATE " + obj.getTableName() + " SET " + columnas + " WHERE ID = ?";
+        System.out.println("sql " + sql);
         Boolean respuesta = Boolean.FALSE;
 
         try {
@@ -148,23 +148,25 @@ public class DAOManager implements IAcctionDB {
             for (int i = 0; i < cantColumnas; i++) {
                 String type = obj.listValues.get(i).getRight();
                 String val = obj.listValues.get(i).getLeft();
-                System.out.println("type "+type);
-                
+                System.out.println("id " + i);
+                System.out.println("type " + type);
+                System.out.println("valores " + val);
+            
                 switch (type) {
                     case "String":
-                        pst.setString(i+1, obj.listValues.get(i).getLeft());
+                        pst.setString(i + 1, obj.listValues.get(i).getLeft());
                         break;
                     case "Integer":
-                        pst.setInt(i+1, Integer.valueOf(obj.listValues.get(i).getLeft()));
+                        pst.setInt(i + 1, Integer.valueOf(obj.listValues.get(i).getLeft()));
                         break;
                     case "Boolean":
-                        pst.setBoolean(i+1, Boolean.valueOf(obj.listValues.get(i).getLeft()));
+                        pst.setBoolean(i + 1, Boolean.valueOf(obj.listValues.get(i).getLeft()));
                         break;
                     case "Double":
-                        pst.setDouble(i+1, Double.valueOf(obj.listValues.get(i).getLeft()));
+                        pst.setDouble(i + 1, Double.valueOf(obj.listValues.get(i).getLeft()));
                         break;
                     case "Date":
-                        pst.setDate(i+1, java.sql.Date.valueOf(obj.listValues.get(i).getLeft()));
+                        pst.setDate(i + 1, java.sql.Date.valueOf(obj.listValues.get(i).getLeft()));
                         break;
                     default:
                         System.out.println("Dato no definido");

@@ -13,23 +13,24 @@ import java.util.List;
  * @author walter
  */
 public class UserType extends DBManagedObject{
-    private int ID;
+    private String ID;
     private String userType;
     
     public UserType() {
         nameTable = "user_types";
         listColumns = new ArrayList<>();
         listColumns.add("user_types");
+        listColumns.add("ID");
 
         listValues = new ArrayList<>();
         
     }    
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
@@ -45,6 +46,7 @@ public class UserType extends DBManagedObject{
     @Override
     public List<Pair<String, String>> getValues() {
         listValues.add(new Pair<>(userType, "String"));
+        listValues.add(new Pair<>(ID, "Integer"));
 
         return listValues;
     }

@@ -14,27 +14,36 @@ import model.UserType;
  */
 public class controllerUserType {
 
-    private DAOManager objUser;
+    private DAOManager objUT;
     private UserType oUT;
     
     public controllerUserType() {
         this.oUT = new UserType();
-        this.objUser = DAOManager.getInstance();
+        this.objUT = DAOManager.getInstance();
     }
 
     public void run() {
-        oUT.setUserType("Administrador");
+        oUT.setUserType("Vendedor");
+        oUT.setID("1");
         
         oUT.getValues().get(0).getLeft();
         oUT.getValues().get(0).getRight();
         
         System.out.println("yy "+oUT.getUserType());
         
-        if (!objUser.Create(oUT)){
+//        if (!objUT.Create(oUT)){
+//            System.out.println("Error");
+//        }else{
+//            System.out.println("Se ingreso correctamente");
+//        }
+
+        if (!objUT.Update(oUT)){
             System.out.println("Error");
         }else{
-            System.out.println("Se ingreso correctamente");
+            System.out.println("Se actualizo correctamente");
         }
+
+
         
     }
 
