@@ -5,17 +5,12 @@
  */
 package app;
 
-import controller.controllerApp;
 import controller.controllerPay;
 import controller.controllerUser;
-import java.util.ArrayList;
-import java.util.List;
-import model.DAOUser;
-import model.DBManagedObject;
-import model.Pair;
-import view.ViewConsole;
-import view.viewPay;
-import view.viewUser;
+import controller.controllerUserDetails;
+import controller.controllerUserState;
+import controller.controllerUserType;
+
 
 /**
  *
@@ -32,23 +27,45 @@ public class App {
 
 //        controllerPay controllerPay = new controllerPay(new viewPay());
 //        controllerPay.run();
+//        User db = new User();
+//
+//        db.setUsername("walter ");
+//        db.setEmail("w@w.com ");
+//        db.setPassword("2344 ");
+//
+//        for (int i = 0; i < db.listColumns.size(); i++) {
+//            System.out.println("cant colum " + i);
+//            System.out.println("colum " + db.getColumns().get(i));
+//            System.out.println("left " + db.getValues().get(i).getLeft());
+//            System.out.println("right " + db.getValues().get(i).getRight());
+//        }
 
-        controllerUser controllerUser = new controllerUser(new viewUser());
-        controllerUser.run();
+        //Para ingresar un usuario
+        //controllerUser controllerUser = new controllerUser();
+        //controllerUser.run();
 
+        //Para ingresar los datos del usuario
+        controllerUserDetails controllerUserDetails = new controllerUserDetails();
+        controllerUserDetails.run();
 
-        DAOUser ou = new DAOUser();
-        DBManagedObject db = new DBManagedObject();
+        //Para ingresar los estados de los usuarios
+        //controllerUserState controllerUserState = new controllerUserState();
+        //controllerUserState.run();
+
+        //Para ingresar los tipos de usuario
+//        controllerUserType controllerUserType = new controllerUserType();
+//        controllerUserType.run();        
         
-        ArrayList<Pair> a = new ArrayList<>();
+        //Para ingresar los metodos de Pay (pagos)
+//        controllerPay controllerPay = new controllerPay();
+//        controllerPay.run();        
 
-        Pair p = new Pair("String", "Hola");
-        
-        a.add(p);
-        a.add(new Pair("String", "Chau"));
-        
-        System.out.println("y "+a);
 
+        
     }
 
+    
+    
+    
+    
 }

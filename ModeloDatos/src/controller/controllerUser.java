@@ -5,8 +5,8 @@
  */
 package controller;
 
-import model.DAOUser;
-import model.DBManagedObject;
+import model.DAOManager;
+import model.Pair;
 import model.User;
 import view.viewUser;
 
@@ -18,31 +18,44 @@ import view.viewUser;
 public class controllerUser {
 
     protected viewUser unaVista;
-    private DAOUser objUser;
+    private DAOManager objUser;
     private User oUser;
     
-    public controllerUser(viewUser Vista) {
-        this.unaVista = Vista;
+    public controllerUser() {
         this.oUser = new User();
-        this.objUser = new DAOUser();
+        this.objUser = DAOManager.getInstance();
         
 
     }
 
+    public controllerUser(viewUser Vista) {
+        this.unaVista = Vista;
+        this.oUser = new User();
+        this.objUser = DAOManager.getInstance();
+        
+
+    }
+
+    
     public void run() {
         
-        unaVista.EscribirFormulario();
-        oUser.setUsername(unaVista.getUsername());
-        oUser.setEmail(unaVista.getEmail());
-        oUser.setPassword(unaVista.getPassword());
+        oUser.setUsername("wac");
+        oUser.setEmail("wac@wac.com");
+        oUser.setPassword("1234");
+        oUser.setUser_details_ID("1");
+        oUser.setUser_state_ID("1");
+        oUser.setUser_types_ID("1");
         
-        System.out.println("yy "+oUser);
+        oUser.getValues().get(0).getLeft();
+        oUser.getValues().get(0).getRight();
+        
+        System.out.println("yy "+oUser.getUsername());
         
         if (!objUser.Create(oUser)){
             System.out.println("Error");
         }else{
             System.out.println("Se ingreso correctamente");
-            System.out.println("Se registro un usuario: "+unaVista.getUsername()+" con el email "+unaVista.getEmail());
+            //System.out.println("Se registro un usuario: "+unaVista.getUsername()+" con el email "+unaVista.getEmail());
         }
         
     }

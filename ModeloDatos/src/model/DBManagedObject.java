@@ -18,6 +18,10 @@ public class DBManagedObject {
     public List<String> listAll;
     public String nameTable;
 
+    public DBManagedObject(){
+        listValues = new ArrayList<>();
+    }
+    
     public String getTableName() {
         return nameTable;
     }

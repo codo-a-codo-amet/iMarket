@@ -5,10 +5,8 @@
  */
 package controller;
 
-import model.DAOPay;
-import model.DBManagedObject;
+import model.DAOManager;
 import model.Pay;
-import view.viewPay;
 
 /**
  *
@@ -16,28 +14,36 @@ import view.viewPay;
  */
 public class controllerPay {
  
-    protected viewPay unaVista;
-    private DAOPay objPay;
     private Pay oPay;
+    private DAOManager objPay;
 
-    public controllerPay(viewPay Vista) {
-        this.unaVista = Vista;
+    public controllerPay() {
         this.oPay = new Pay();
-        this.objPay = new DAOPay();
+        this.objPay = DAOManager.getInstance();
+        
         
     }
 
     public void run() {
+        oPay.setID("1");
+        oPay.setDescription("Tarjeta");
+
+//        oPay.getValues().get(0).getLeft();
+//        oPay.getValues().get(0).getRight();
         
-        unaVista.EscribirFormulario();
-        oPay.setDescripcion(unaVista.getDes());
-        
-//        if (!objPay.Create()){
+//        if (!objPay.Create(oPay)){
 //            System.out.println("Error");
 //        }else{
 //            System.out.println("Se ingreso correctamente");
-//            System.out.println("Forma de Pago: "+unaVista.getDes());
+//            System.out.println("Forma de Pago: "+oPay.getDescription());
 //        }
+
+        if (!objPay.Update(oPay)){
+            System.out.println("Error");
+        }else{
+            System.out.println("Se actualizo correctamente");
+            System.out.println("Forma de Pago: "+oPay.getDescription());
+        }
         
     }
     

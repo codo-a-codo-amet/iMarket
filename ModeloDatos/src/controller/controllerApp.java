@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package controller;
-
-import model.DAOPay;
-import model.Pay;
+;
 import view.ViewConsole;
 
 /**

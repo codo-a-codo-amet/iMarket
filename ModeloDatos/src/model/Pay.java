@@ -11,35 +11,44 @@ import java.util.*;
  *
  * @author walter
  */
-public class Pay{
-
-   private String descripcion;
-   private Date create_time;
+public class Pay extends DBManagedObject{
+    private String ID;
+    private String description;
 
     public Pay() {
+        nameTable = "pay";
+        listColumns = new ArrayList<>();
+        listColumns.add("ID");
+        listColumns.add("description");
+
+        listValues = new ArrayList<>();
+    
     }
 
-    public Pay(String descripcion, Date create_time) {
-        this.descripcion = descripcion;
-        this.create_time = create_time;
+    public String getID() {
+        return ID;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+    
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Date getCreate_time() {
-        return create_time;
+    @Override
+    public List<Pair<String, String>> getValues() {
+        listValues.add(new Pair<>(ID, "Integer"));
+        listValues.add(new Pair<>(description, "String"));
+
+        return listValues;
     }
 
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
-    }
-   
-   
+    
     
 }
