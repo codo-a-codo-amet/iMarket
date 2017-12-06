@@ -45,16 +45,16 @@ public class App {
         //controllerUser.run();
 
         //Para ingresar los datos del usuario
-        //controllerUserDetails controllerUserDetails = new controllerUserDetails();
-        //controllerUserDetails.run();
+        controllerUserDetails controllerUserDetails = new controllerUserDetails();
+        controllerUserDetails.run();
 
         //Para ingresar los estados de los usuarios
         //controllerUserState controllerUserState = new controllerUserState();
         //controllerUserState.run();
 
         //Para ingresar los tipos de usuario
-        controllerUserType controllerUserType = new controllerUserType();
-        controllerUserType.run();        
+//        controllerUserType controllerUserType = new controllerUserType();
+//        controllerUserType.run();        
         
         //Para ingresar los metodos de Pay (pagos)
 //        controllerPay controllerPay = new controllerPay();

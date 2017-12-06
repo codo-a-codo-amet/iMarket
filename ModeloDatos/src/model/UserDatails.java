@@ -13,7 +13,7 @@ import java.util.List;
  * @author walter
  */
 public class UserDatails extends DBManagedObject{
-    private int ID;
+    private String ID;
     private String name;
     private String surname;
     private String dni;
@@ -30,16 +30,17 @@ public class UserDatails extends DBManagedObject{
         listColumns.add("birth_date");
         listColumns.add("address");
         listColumns.add("telephone");
+        listColumns.add("ID");
 
         listValues = new ArrayList<>();
         
     }    
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
@@ -99,6 +100,7 @@ public class UserDatails extends DBManagedObject{
         listValues.add(new Pair<>(birth_date, "Date"));
         listValues.add(new Pair<>(address, "String"));
         listValues.add(new Pair<>(telephone, "String"));
+        listValues.add(new Pair<>(ID, "Integer"));
 
         return listValues;
     }

@@ -6,7 +6,6 @@
 package controller;
 
 import model.DAOManager;
-import model.User;
 import model.UserDatails;
 
 
@@ -31,17 +30,33 @@ public class controllerUserDetails {
         oUD.setBirth_date("1970-11-30");
         oUD.setAddress("Calle 1 567");
         oUD.setTelephone("44448888");
+        oUD.setID("2");
         
         oUD.getValues().get(0).getLeft();
         oUD.getValues().get(0).getRight();
         
-        System.out.println("yy "+oUD.getName());
+        System.out.println("dato "+oUD.getID());
+//        Para Insertar un registo      
+//        if (!objUser.Create(oUD)){
+//            System.out.println("Error");
+//        }else{
+//            System.out.println("Se ingreso correctamente");
+//        }
+
+//        Para Editar un registo
+//        if (!objUser.Update(oUD)){
+//            System.out.println("Error");
+//        }else{
+//            System.out.println("Se actualizo correctamente");
+//        }
         
-        if (!objUser.Create(oUD)){
-            System.out.println("Error");
+//      Para Eliminar un registo
+        if (!objUser.Delete(oUD)){
+            System.out.println("Error al eliminar");
         }else{
-            System.out.println("Se ingreso correctamente");
+            System.out.println("Se Elimino correctamente");
         }
+        
         
     }
 

@@ -118,25 +118,23 @@ public class DAOManager implements IAcctionDB {
         PreparedStatement pst;
 
         String signo = "?";
-        String coma = ",";
-        String valores = "";
+        String coma = ", ";
         String columnas = "";
 
         int cantColumnas = obj.getColumns().size();
-        System.out.println("cant columnas "+cantColumnas);
-        for (int i = 0; i < cantColumnas-1; i++) {
+
+        for (int i = 0; i < cantColumnas - 1; i++) {
             if (i < cantColumnas) {
                 columnas += obj.getColumns().get(i) + " = " + signo;
-//                valores += signo;
-                if (i > cantColumnas-1) {
+
+                if (i < cantColumnas - 2) {
                     columnas += coma;
-                    //valores += coma;
                 }
             }
         }
 
         String sql = "UPDATE " + obj.getTableName() + " SET " + columnas + " WHERE ID = ?";
-        System.out.println("sql " + sql);
+        //System.out.println("sql " + sql);
         Boolean respuesta = Boolean.FALSE;
 
         try {
@@ -151,7 +149,7 @@ public class DAOManager implements IAcctionDB {
                 System.out.println("id " + i);
                 System.out.println("type " + type);
                 System.out.println("valores " + val);
-            
+
                 switch (type) {
                     case "String":
                         pst.setString(i + 1, obj.listValues.get(i).getLeft());
@@ -189,7 +187,32 @@ public class DAOManager implements IAcctionDB {
 
     @Override
     public Boolean Delete(DBManagedObject obj) {
-        return null;
+        Connection cn;
+        PreparedStatement pst;
+
+        String sql = "DELETE FROM " + obj.getTableName() + " WHERE ID=?";
+        System.out.println("sql = " + sql);
+        Boolean respuesta = Boolean.FALSE;
+
+        try {
+            Class.forName(db.getDriver());
+            cn = DriverManager.getConnection(db.getUrl(), db.getUsuario(), db.getContrasenia());
+
+            pst = cn.prepareStatement(sql);
+
+            int cantColumnas = obj.getColumns().size();
+            int colID = cantColumnas-1;
+           
+            pst.setInt(1, Integer.valueOf(obj.listValues.get(colID).getLeft()));
+
+            respuesta = pst.execute();
+
+            cn.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("Se produjo un error al conectarse: " + ex.getMessage());
+        }
+
+        return respuesta;
     }
 
     @Override
