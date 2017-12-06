@@ -30,7 +30,7 @@ public class controllerUserDetails {
         oUD.setBirth_date("1970-11-30");
         oUD.setAddress("Calle 1 567");
         oUD.setTelephone("44448888");
-        oUD.setID("2");
+        oUD.setID("1");
         
         oUD.getValues().get(0).getLeft();
         oUD.getValues().get(0).getRight();
@@ -51,12 +51,19 @@ public class controllerUserDetails {
 //        }
         
 //      Para Eliminar un registo
-        if (!objUser.Delete(oUD)){
-            System.out.println("Error al eliminar");
+//        if (!objUser.Delete(oUD)){
+//            System.out.println("Error al eliminar");
+//        }else{
+//            System.out.println("Se Elimino correctamente");
+//        }
+
+//      Para Seleccionar registros
+        if (objUser.List(oUD).size()>0){
+            System.out.println("Listado:");
+            System.out.println(objUser.List(oUD));
         }else{
-            System.out.println("Se Elimino correctamente");
-        }
-        
+            System.out.println("No hay registros para listar");
+        }        
         
     }
 

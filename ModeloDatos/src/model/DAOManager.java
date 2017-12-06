@@ -201,8 +201,8 @@ public class DAOManager implements IAcctionDB {
             pst = cn.prepareStatement(sql);
 
             int cantColumnas = obj.getColumns().size();
-            int colID = cantColumnas-1;
-           
+            int colID = cantColumnas - 1;
+
             pst.setInt(1, Integer.valueOf(obj.listValues.get(colID).getLeft()));
 
             respuesta = pst.execute();
@@ -217,7 +217,51 @@ public class DAOManager implements IAcctionDB {
 
     @Override
     public List<?> List(DBManagedObject obj) {
-        return null;
+        Connection cn;
+        PreparedStatement pst;
+
+        String signo = "?";
+        String coma = ", ";
+        String columnas = "";
+
+        int cantColumnas = obj.getColumns().size();
+
+        for (int i = 0; i < cantColumnas; i++) {
+            if (i < cantColumnas) {
+                columnas += "`"+obj.getColumns().get(i)+"`";
+
+                if (i < cantColumnas-1) {
+                    columnas += coma;
+                }
+            }
+        }
+
+        String sql = "SELECT "+ columnas +" FROM " + obj.getTableName() + " WHERE ID = ?";
+        System.out.println("sql " + sql);
+
+        try {
+            Class.forName(db.getDriver());
+            cn = DriverManager.getConnection(db.getUrl(), db.getUsuario(), db.getContrasenia());
+
+            pst = cn.prepareStatement(sql);
+            
+            int colID = cantColumnas - 1;
+            System.out.println(colID);
+            pst.setInt(1, Integer.valueOf(obj.listValues.get(colID).getLeft()));
+            System.out.println(pst);            
+            ResultSet rs = pst.executeQuery(sql);
+
+            while (rs.next()) {
+                lista.add(rs.getString("name"));
+                System.out.println(rs.getString("name"));
+            }
+
+            cn.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("Se produjo un error al conectarse: " + ex.getMessage());
+        }
+
+        return lista;
     }
 
 }
