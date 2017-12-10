@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author walter
  */
-public class User extends DBManagedObject {
+public class User extends DBManagedObject{
 
     private int id;
     private String username;
@@ -23,7 +23,11 @@ public class User extends DBManagedObject {
     private String user_details_ID;
     private String user_types_ID;
 
+    private DAOManager DAO;
+    
     public User() {
+        this.DAO = DAOManager.getInstance();
+        
         nameTable = "user";
         listColumns = new ArrayList<>();
         listColumns.add("username");
@@ -37,6 +41,7 @@ public class User extends DBManagedObject {
     }
 
     public User(int id, String username, String email, String password) {
+        this.DAO = DAOManager.getInstance();
         this.id = id;
         this.username = username;
         this.email = email;
@@ -111,4 +116,15 @@ public class User extends DBManagedObject {
         return listValues;
     }
 
+    public String getCrear(){
+        System.out.println("Se creo el metodo Crear");
+        
+        DBManagedObject ob = new DBManagedObject();
+        User u = new User(1, "Prueba 1", "prueba", "prueba");
+        DAO.Create(u);
+        
+        return ob.getMensaje("Hola");
+    }
+    
+    
 }
