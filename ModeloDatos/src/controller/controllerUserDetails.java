@@ -36,9 +36,10 @@ public class controllerUserDetails {
         oUD.getValues().get(0).getRight();
         
         System.out.println("dato "+oUD.getID());
+
 //        Para Insertar un registo      
 //        if (!objUser.Create(oUD)){
-//            System.out.println("Error");
+//            System.out.println("Error al guardar el registro");
 //        }else{
 //            System.out.println("Se ingreso correctamente");
 //        }
