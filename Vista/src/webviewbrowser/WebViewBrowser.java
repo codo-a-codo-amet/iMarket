@@ -32,12 +32,16 @@
 package webviewbrowser;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -54,6 +58,8 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import jdk.nashorn.api.scripting.JSObject;
+import org.w3c.dom.Document;
+import org.w3c.dom.html.HTMLFormElement;
 
 /**
  * Demonstrates a WebView object accessing a web page.
@@ -62,9 +68,11 @@ import jdk.nashorn.api.scripting.JSObject;
  * @see javafx.scene.web.WebEngine
  */
 public class WebViewBrowser extends Application {
-
+private List<IViewEventListener> list_listeners;
     @Override
     public void start(Stage primaryStage) throws Exception {
+        
+         list_listeners = new ArrayList<>();
         Pane root = new Pane();
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
@@ -92,12 +100,30 @@ public class WebViewBrowser extends Application {
                 System.out.println("QUe?");
             }
         });
-        
+           eng.documentProperty().addListener(
+                (ObservableValue<? extends Document> ov, Document oldDoc, Document doc) -> {
+                    if (doc != null) {
+                        if (doc.getElementsByTagName("form").getLength() > 0) {
+                            HTMLFormElement form = (HTMLFormElement) doc.getElementsByTagName("form").item(0);
+                            System.out.println(form.getAttribute("action"));
+                            if ("lalalala".equals(form.getAttribute("action"))) {
+                                   System.out.println("ATRODE!");
+                                   Event evento = new Event("submi", null, EventType.ROOT);
+                                   for (Iterator<IViewEventListener> iterator = list_listeners.iterator(); iterator.hasNext();) {
+                                    IViewEventListener next = iterator.next();
+                                    next.listen(evento);
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+        );
        // eng.documentProperty().addListener(  );
-        eng.getLoadWorker().stateProperty().addListener(
-                (observable, oldValue, newValue)
-                -> {
-                    System.out.println("Worker " + observable);
+        //eng.getLoadWorker().stateProperty().addListener(
+                //(observable, oldValue, newValue)
+               // -> {
+                   // System.out.println("Worker " + observable);
            /* JSObject window = (JSObject) eng.executeScript("window");
             JavaBridge bridge = new JavaBridge();
             window.setMember("java", bridge);
@@ -105,7 +131,7 @@ public class WebViewBrowser extends Application {
                     + "{\n"
                     + "    java.log(message);\n"
                     + "};");*/
-        });
+       // });
 
     }
 
