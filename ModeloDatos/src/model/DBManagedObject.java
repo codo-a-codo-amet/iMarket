@@ -38,7 +38,9 @@ public class DBManagedObject {
         return listAll;
     }
 
-
+    public String getMensaje(String mensaje){
+        return mensaje;
+    }
 
 
 

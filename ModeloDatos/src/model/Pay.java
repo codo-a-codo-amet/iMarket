@@ -18,8 +18,8 @@ public class Pay extends DBManagedObject{
     public Pay() {
         nameTable = "pay";
         listColumns = new ArrayList<>();
-        listColumns.add("ID");
         listColumns.add("description");
+        listColumns.add("ID");
 
         listValues = new ArrayList<>();
     

@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package imarket;
-
-import java.awt.Event;
+package model;
 
 /**
  *
- * @author alumno
+ * @author wceba
  */
-public interface IViewEventListener {
-    public void listen(Event event);
+public class Product extends DBManagedObject{
+    
 }

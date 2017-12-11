@@ -4,34 +4,22 @@
  * and open the template in the editor.
  */
 package controller;
-;
-import view.ViewConsole;
+
+import model.DBManagedObject;
 
 /**
  *
  * @author walter
  */
 public class controllerApp {
-protected ViewConsole unaVista;
 
-    public controllerApp(ViewConsole Vista) {
-        this.unaVista = Vista;
+    public controllerApp() {
+        
     }
 
     public void run() {
+        DBManagedObject obj = FactoryController.getController("User");
         
-        unaVista.EscribirFormulario();
 
-        System.out.println("Usuario:"+unaVista.getU());
-        
-//        System.out.println("Hola Mundo!!!");
-//        Pay pay = new Pay();
-//        DAOPay p = new DAOPay();
-//        
-//        pay.setDescripcion("Vendedor");
-//        System.out.println("El resultado es "+p.Create(pay));
-//        
-//        System.out.println("Chau Mundo!!!");
-        
     }
 }

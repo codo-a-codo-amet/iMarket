@@ -6,9 +6,7 @@
 package controller;
 
 import model.DAOManager;
-import model.Pair;
 import model.User;
-import view.viewUser;
 
 
 /**
@@ -17,7 +15,6 @@ import view.viewUser;
  */
 public class controllerUser {
 
-    protected viewUser unaVista;
     private DAOManager objUser;
     private User oUser;
     
@@ -25,17 +22,7 @@ public class controllerUser {
         this.oUser = new User();
         this.objUser = DAOManager.getInstance();
         
-
     }
-
-    public controllerUser(viewUser Vista) {
-        this.unaVista = Vista;
-        this.oUser = new User();
-        this.objUser = DAOManager.getInstance();
-        
-
-    }
-
     
     public void run() {
         
@@ -55,7 +42,6 @@ public class controllerUser {
             System.out.println("Error");
         }else{
             System.out.println("Se ingreso correctamente");
-            //System.out.println("Se registro un usuario: "+unaVista.getUsername()+" con el email "+unaVista.getEmail());
         }
         
     }
