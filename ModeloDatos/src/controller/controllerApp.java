@@ -18,7 +18,7 @@ public class controllerApp {
     }
 
     public void run() {
-        DBManagedObject obj = FactoryController.getController("User");
+        //DBManagedObject obj = FactoryController.getController("UserDatails");
         
 
     }

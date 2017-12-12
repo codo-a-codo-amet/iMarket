@@ -36,14 +36,18 @@ public class controllerUser {
         oUser.getValues().get(0).getLeft();
         oUser.getValues().get(0).getRight();
         
-        System.out.println("yy "+oUser.getUsername());
+        System.out.println("dato columna "+oUser.getUsername());
         
-        if (!objUser.Create(oUser)){
-            System.out.println("Error");
-        }else{
-            System.out.println("Se ingreso correctamente");
-        }
-        
+//        if (!objUser.Create(oUser)){
+//            System.out.println("Error");
+//        }else{
+//            System.out.println("Se ingreso correctamente");
+//        }
+
+        //Listar registros
+        System.out.println("Listado");
+        System.out.println(objUser.List(oUser));
+
     }
 
     
