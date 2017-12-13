@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class User extends DBManagedObject{
 
-    private int id;
+    private String id;
     private String username;
     private String email;
     private String password;
@@ -40,7 +40,7 @@ public class User extends DBManagedObject{
         listValues = new ArrayList<>();
     }
 
-    public User(int id, String username, String email, String password) {
+    public User(String id, String username, String email, String password) {
         this.DAO = DAOManager.getInstance();
         this.id = id;
         this.username = username;
@@ -48,11 +48,11 @@ public class User extends DBManagedObject{
         this.password = password;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -112,6 +112,7 @@ public class User extends DBManagedObject{
         listValues.add(new Pair<>(user_state_ID, "Integer"));
         listValues.add(new Pair<>(user_details_ID, "Integer"));
         listValues.add(new Pair<>(user_types_ID, "Integer"));
+        listValues.add(new Pair<>(id, "Integer"));
 
         return listValues;
     }
@@ -120,7 +121,7 @@ public class User extends DBManagedObject{
         System.out.println("Se creo el metodo Crear");
         
         DBManagedObject ob = new DBManagedObject();
-        User u = new User(1, "Prueba 1", "prueba", "prueba");
+        User u = new User("1","Prueba 1", "prueba", "prueba");
         DAO.Create(u);
         
         return ob.getMensaje("Hola");

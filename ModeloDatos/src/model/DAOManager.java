@@ -228,15 +228,15 @@ public class DAOManager implements IAcctionDB {
 
         for (int i = 0; i < cantColumnas; i++) {
             if (i < cantColumnas) {
-                columnas += "`"+obj.getColumns().get(i)+"`";
+                columnas += "`" + obj.getColumns().get(i) + "`";
 
-                if (i < cantColumnas-1) {
+                if (i < cantColumnas - 1) {
                     columnas += coma;
                 }
             }
         }
 
-        String sql = "SELECT "+ columnas +" FROM " + obj.getTableName() + " WHERE ID = ?";
+        String sql = "SELECT " + columnas + " FROM " + obj.getTableName();
         System.out.println("sql " + sql);
 
         try {
@@ -244,23 +244,53 @@ public class DAOManager implements IAcctionDB {
             cn = DriverManager.getConnection(db.getUrl(), db.getUsuario(), db.getContrasenia());
 
             pst = cn.prepareStatement(sql);
-            
-            int colID = cantColumnas - 1;
-            System.out.println(colID);
-            pst.setInt(1, Integer.valueOf(obj.listValues.get(colID).getLeft()));
-            System.out.println(pst);            
             ResultSet rs = pst.executeQuery(sql);
+            List listColumns = new ArrayList<>();
+            Object dato;
 
             while (rs.next()) {
-                lista.add(rs.getString("name"));
-                System.out.println(rs.getString("name"));
+                ResultSetMetaData rsmd = rs.getMetaData();
+
+                for (int i = 1; i < rsmd.getColumnCount(); i++) {
+                    int type = rsmd.getColumnType(i);
+                    String types = obj.listValues.get(i).getRight();
+
+                    if (type == Types.VARCHAR || type == Types.CHAR) {
+                        dato = rs.getString(i);
+                        System.out.println("Valor " + rs.getString(i));
+                    } else {
+                        dato = rs.getInt(i);
+                        System.out.println("Valor " + rs.getInt(i));
+                    }
+                    
+                    listColumns.add(new Pair(type, dato));
+
+                }
+
+//                for columans {
+//                switch (i)
+//                        case int:
+//                        obecjt dato = rs.getObject(colID, type);
+//                        break;
+//                        case String:
+//                        object dato = rs.getObject(signo, type);
+//                creas lista< Pair < tipo, dato> >
+//                se asigna a un nuevo DBManagedOBject <- Seter
+//                        
+//                        ese nuevo DBmanger lista.add (DBManagedObjects)
+//                
+//                }
+                System.out.println(rs.getString("username"));
             }
+
+            lista.add(listColumns);
 
             cn.close();
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("Se produjo un error al conectarse: " + ex.getMessage());
         }
 
+        //return lista;<- Esta llena de DBManagedObjects
         return lista;
     }
 

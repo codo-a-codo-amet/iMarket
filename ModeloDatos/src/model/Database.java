@@ -18,13 +18,13 @@ public class Database {
     public Database() {
         this.driver = "com.mysql.jdbc.Driver";
 
-//        this.url = "jdbc:mysql://192.168.0.37:3306/iMarket";
-//        this.usuario = "alumno";
-//        this.contrasenia = "codoacodo";
+        this.url = "jdbc:mysql://192.168.0.37:3306/iMarket";
+        this.usuario = "alumno";
+        this.contrasenia = "codoacodo";
         
-        this.url = "jdbc:mysql://localhost:3306/iMarket";
-        this.usuario = "root";
-        this.contrasenia = "Miowac-2003";
+//        this.url = "jdbc:mysql://localhost:3306/iMarket";
+//        this.usuario = "root";
+//        this.contrasenia = "Miowac-2003";
     }
 
     public String getDriver() {

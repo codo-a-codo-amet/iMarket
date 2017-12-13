@@ -6,6 +6,7 @@
 package app;
 
 import controller.FactoryController;
+import controller.controllerUser;
 import model.DBManagedObject;
 
 
@@ -20,14 +21,17 @@ public class App {
      */
     public static void main(String[] args) {
 
-        DBManagedObject obj = FactoryController.getController("usertype");
+        DBManagedObject obj = FactoryController.getController("user");
         
         System.out.println("columna "+obj.getColumns().get(0));
 
         //Para ingresar los tipos de usuario
 //        controllerUserType controllerUserType = new controllerUserType();
 //        controllerUserType.run();        
-                
+
+        //Para listar usuarios
+        controllerUser controllerUser = new controllerUser();
+        controllerUser.run();  
         
     }
 
