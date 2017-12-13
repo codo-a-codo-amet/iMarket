@@ -5,7 +5,9 @@
  */
 package controller;
 
+import java.util.List;
 import model.DAOManager;
+import model.DBManagedObject;
 import model.User;
 
 
@@ -13,7 +15,7 @@ import model.User;
  *
  * @author alumno
  */
-public class controllerUser {
+public class controllerUser implements IController{
 
     private DAOManager objUser;
     private User oUser;
@@ -44,6 +46,11 @@ public class controllerUser {
             System.out.println("Se ingreso correctamente");
         }
         
+    }
+
+    @Override
+    public List<?> listValues(DBManagedObject obj) {
+        return obj.listColumns;
     }
 
     
