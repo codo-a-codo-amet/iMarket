@@ -239,29 +239,54 @@ public class DAOManager implements IAcctionDB {
 
             pst = cn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery(sql);
-            
+
             List listColumns = new ArrayList<>();
-            Object dato;
+            DBManagedObject oDAO = new DBManagedObject();
+            int type = 0;
+            Object dato = null;
+            String tipos = null;
 
             while (rs.next()) {
                 ResultSetMetaData rsmd = rs.getMetaData();
 
                 for (int i = 1; i < rsmd.getColumnCount(); i++) {
-                    int type = rsmd.getColumnType(i);
-                    String tipos = obj.listValues.get(i).getRight();
-                    System.out.println("tipos "+tipos);
-                    if (type == Types.VARCHAR || type == Types.CHAR) {
-                        dato = rs.getString(i);
-                        System.out.println("Valor " + rs.getString(i));
-                    } else {
-                        dato = rs.getInt(i);
-                        System.out.println("Valor " + rs.getInt(i));
-                    }
-                    
-                    listColumns.add(new Pair(type, dato));
+                    type = rsmd.getColumnType(i);
+                    tipos = obj.listValues.get(i).getRight();
+                    System.out.println("tipos " + tipos);
 
+                    switch (type) {
+                        case Types.VARCHAR:
+                        case Types.CHAR:
+                            dato = rs.getString(i);
+                            System.out.println("Valor " + rs.getString(i));
+                            break;
+                        case Types.INTEGER:
+                            dato = rs.getInt(i);
+                            System.out.println("Valor " + rs.getInt(i));
+                            break;
+                        case Types.BOOLEAN:
+                            dato = rs.getBoolean(i);
+                            System.out.println("Valor " + rs.getBoolean(i));
+                            break;
+                        case Types.DATE:
+                            dato = rs.getDate(i);
+                            System.out.println("Valor " + rs.getDate(i));
+                            break;
+                        case Types.DOUBLE:
+                            dato = rs.getDouble(i);
+                            System.out.println("Valor " + rs.getDouble(i));
+                            break;
+                        default:
+                            System.out.println("Dato no definido");
+                            break;
+                    }
+
+                    listColumns.add(new Pair(type, dato));
                 }
 
+                //oDAO.setListValues(new Pair<>(dato, tipos));
+
+                //oDAO.setListValues(new Pair<>(type, dato));
 //                for columans {
 //                switch (i)
 //                        case int:
@@ -278,7 +303,7 @@ public class DAOManager implements IAcctionDB {
                 //System.out.println(rs.getString("username"));
             }
 
-            lista.add(listColumns);
+            lista.add(oDAO);
 
             cn.close();
         } catch (ClassNotFoundException | SQLException ex) {
@@ -288,12 +313,10 @@ public class DAOManager implements IAcctionDB {
         //return lista;<- Esta llena de DBManagedObjects
         return lista;
     }
-   
+
     @Override
     public List<?> ListBy(String campo, String criterio) {
         return null;
     }
-    
-    
-    
+
 }
