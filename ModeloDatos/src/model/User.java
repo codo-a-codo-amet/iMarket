@@ -35,7 +35,7 @@ public class User extends DBManagedObject{
         listColumns.add("password");
         listColumns.add("user_state_ID");
         listColumns.add("user_details_ID");
-        listColumns.add("user_details_ID");
+        listColumns.add("ID");
 
         listValues = new ArrayList<>();
     }
@@ -115,16 +115,6 @@ public class User extends DBManagedObject{
         listValues.add(new Pair<>(id, "Integer"));
 
         return listValues;
-    }
-
-    public String getCrear(){
-        System.out.println("Se creo el metodo Crear");
-        
-        DBManagedObject ob = new DBManagedObject();
-        User u = new User("1","Prueba 1", "prueba", "prueba");
-        DAO.Create(u);
-        
-        return ob.getMensaje("Hola");
     }
     
     

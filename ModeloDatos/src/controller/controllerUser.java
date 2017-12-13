@@ -37,9 +37,7 @@ public class controllerUser implements IController{
         
         oUser.getValues().get(0).getLeft();
         oUser.getValues().get(0).getRight();
-        
-        System.out.println("dato columna "+oUser.getUsername());
-        
+              
 //        if (!objUser.Create(oUser)){
 //            System.out.println("Error");
 //        }else{

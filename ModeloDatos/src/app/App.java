@@ -23,8 +23,6 @@ public class App {
 
         DBManagedObject obj = FactoryController.getController("user");
         
-        System.out.println("columna "+obj.getColumns().get(0));
-
         //Para ingresar los tipos de usuario
 //        controllerUserType controllerUserType = new controllerUserType();
 //        controllerUserType.run();        

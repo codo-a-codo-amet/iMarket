@@ -108,11 +108,6 @@ public class DAOManager implements IAcctionDB {
     }
 
     @Override
-    public List<?> ListBy(String campo, String criterio) {
-        return null;
-    }
-
-    @Override
     public Boolean Update(DBManagedObject obj) {
         Connection cn;
         PreparedStatement pst;
@@ -216,11 +211,10 @@ public class DAOManager implements IAcctionDB {
     }
 
     @Override
-    public List<?> List(DBManagedObject obj) {
+    public List<DAOManager> List(DBManagedObject obj) {
         Connection cn;
         PreparedStatement pst;
 
-        String signo = "?";
         String coma = ", ";
         String columnas = "";
 
@@ -245,6 +239,7 @@ public class DAOManager implements IAcctionDB {
 
             pst = cn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery(sql);
+            
             List listColumns = new ArrayList<>();
             Object dato;
 
@@ -253,8 +248,8 @@ public class DAOManager implements IAcctionDB {
 
                 for (int i = 1; i < rsmd.getColumnCount(); i++) {
                     int type = rsmd.getColumnType(i);
-                    String types = obj.listValues.get(i).getRight();
-
+                    String tipos = obj.listValues.get(i).getRight();
+                    System.out.println("tipos "+tipos);
                     if (type == Types.VARCHAR || type == Types.CHAR) {
                         dato = rs.getString(i);
                         System.out.println("Valor " + rs.getString(i));
@@ -280,7 +275,7 @@ public class DAOManager implements IAcctionDB {
 //                        ese nuevo DBmanger lista.add (DBManagedObjects)
 //                
 //                }
-                System.out.println(rs.getString("username"));
+                //System.out.println(rs.getString("username"));
             }
 
             lista.add(listColumns);
@@ -293,5 +288,12 @@ public class DAOManager implements IAcctionDB {
         //return lista;<- Esta llena de DBManagedObjects
         return lista;
     }
-
+   
+    @Override
+    public List<?> ListBy(String campo, String criterio) {
+        return null;
+    }
+    
+    
+    
 }
