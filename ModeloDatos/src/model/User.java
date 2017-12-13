@@ -13,9 +13,9 @@ import java.util.List;
  *
  * @author walter
  */
-public class User extends DBManagedObject {
+public class User extends DBManagedObject{
 
-    private int id;
+    private String id;
     private String username;
     private String email;
     private String password;
@@ -23,7 +23,11 @@ public class User extends DBManagedObject {
     private String user_details_ID;
     private String user_types_ID;
 
+    private DAOManager DAO;
+    
     public User() {
+        this.DAO = DAOManager.getInstance();
+        
         nameTable = "user";
         listColumns = new ArrayList<>();
         listColumns.add("username");
@@ -31,23 +35,24 @@ public class User extends DBManagedObject {
         listColumns.add("password");
         listColumns.add("user_state_ID");
         listColumns.add("user_details_ID");
-        listColumns.add("user_details_ID");
+        listColumns.add("ID");
 
         listValues = new ArrayList<>();
     }
 
-    public User(int id, String username, String email, String password) {
+    public User(String id, String username, String email, String password) {
+        this.DAO = DAOManager.getInstance();
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -107,8 +112,10 @@ public class User extends DBManagedObject {
         listValues.add(new Pair<>(user_state_ID, "Integer"));
         listValues.add(new Pair<>(user_details_ID, "Integer"));
         listValues.add(new Pair<>(user_types_ID, "Integer"));
+        listValues.add(new Pair<>(id, "Integer"));
 
         return listValues;
     }
-
+    
+    
 }

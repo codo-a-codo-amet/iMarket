@@ -5,19 +5,18 @@
  */
 package controller;
 
+import java.util.List;
 import model.DAOManager;
-import model.Pair;
+import model.DBManagedObject;
 import model.User;
-import view.viewUser;
 
 
 /**
  *
  * @author alumno
  */
-public class controllerUser {
+public class controllerUser implements IController{
 
-    protected viewUser unaVista;
     private DAOManager objUser;
     private User oUser;
     
@@ -25,17 +24,7 @@ public class controllerUser {
         this.oUser = new User();
         this.objUser = DAOManager.getInstance();
         
-
     }
-
-    public controllerUser(viewUser Vista) {
-        this.unaVista = Vista;
-        this.oUser = new User();
-        this.objUser = DAOManager.getInstance();
-        
-
-    }
-
     
     public void run() {
         
@@ -48,16 +37,22 @@ public class controllerUser {
         
         oUser.getValues().get(0).getLeft();
         oUser.getValues().get(0).getRight();
-        
-        System.out.println("yy "+oUser.getUsername());
-        
-        if (!objUser.Create(oUser)){
-            System.out.println("Error");
-        }else{
-            System.out.println("Se ingreso correctamente");
-            //System.out.println("Se registro un usuario: "+unaVista.getUsername()+" con el email "+unaVista.getEmail());
-        }
-        
+              
+//        if (!objUser.Create(oUser)){
+//            System.out.println("Error");
+//        }else{
+//            System.out.println("Se ingreso correctamente");
+//        }
+
+        //Listar registros
+        System.out.println("Listado");
+        System.out.println(objUser.List(oUser));
+
+    }
+
+    @Override
+    public List<?> listValues(DBManagedObject obj) {
+        return obj.listColumns;
     }
 
     

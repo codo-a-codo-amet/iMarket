@@ -108,11 +108,6 @@ public class DAOManager implements IAcctionDB {
     }
 
     @Override
-    public List<?> ListBy(String campo, String criterio) {
-        return null;
-    }
-
-    @Override
     public Boolean Update(DBManagedObject obj) {
         Connection cn;
         PreparedStatement pst;
@@ -216,11 +211,10 @@ public class DAOManager implements IAcctionDB {
     }
 
     @Override
-    public List<?> List(DBManagedObject obj) {
+    public List<DAOManager> List(DBManagedObject obj) {
         Connection cn;
         PreparedStatement pst;
 
-        String signo = "?";
         String coma = ", ";
         String columnas = "";
 
@@ -228,15 +222,15 @@ public class DAOManager implements IAcctionDB {
 
         for (int i = 0; i < cantColumnas; i++) {
             if (i < cantColumnas) {
-                columnas += "`"+obj.getColumns().get(i)+"`";
+                columnas += "`" + obj.getColumns().get(i) + "`";
 
-                if (i < cantColumnas-1) {
+                if (i < cantColumnas - 1) {
                     columnas += coma;
                 }
             }
         }
 
-        String sql = "SELECT "+ columnas +" FROM " + obj.getTableName() + " WHERE ID = ?";
+        String sql = "SELECT " + columnas + " FROM " + obj.getTableName();
         System.out.println("sql " + sql);
 
         try {
@@ -244,24 +238,85 @@ public class DAOManager implements IAcctionDB {
             cn = DriverManager.getConnection(db.getUrl(), db.getUsuario(), db.getContrasenia());
 
             pst = cn.prepareStatement(sql);
-            
-            int colID = cantColumnas - 1;
-            System.out.println(colID);
-            pst.setInt(1, Integer.valueOf(obj.listValues.get(colID).getLeft()));
-            System.out.println(pst);            
             ResultSet rs = pst.executeQuery(sql);
 
+            List listColumns = new ArrayList<>();
+            DBManagedObject oDAO = new DBManagedObject();
+            int type = 0;
+            Object dato = null;
+            String tipos = null;
+
             while (rs.next()) {
-                lista.add(rs.getString("name"));
-                System.out.println(rs.getString("name"));
+                ResultSetMetaData rsmd = rs.getMetaData();
+
+                for (int i = 1; i < rsmd.getColumnCount(); i++) {
+                    type = rsmd.getColumnType(i);
+                    tipos = obj.listValues.get(i).getRight();
+                    System.out.println("tipos " + tipos);
+
+                    switch (type) {
+                        case Types.VARCHAR:
+                        case Types.CHAR:
+                            dato = rs.getString(i);
+                            System.out.println("Valor " + rs.getString(i));
+                            break;
+                        case Types.INTEGER:
+                            dato = rs.getInt(i);
+                            System.out.println("Valor " + rs.getInt(i));
+                            break;
+                        case Types.BOOLEAN:
+                            dato = rs.getBoolean(i);
+                            System.out.println("Valor " + rs.getBoolean(i));
+                            break;
+                        case Types.DATE:
+                            dato = rs.getDate(i);
+                            System.out.println("Valor " + rs.getDate(i));
+                            break;
+                        case Types.DOUBLE:
+                            dato = rs.getDouble(i);
+                            System.out.println("Valor " + rs.getDouble(i));
+                            break;
+                        default:
+                            System.out.println("Dato no definido");
+                            break;
+                    }
+
+                    listColumns.add(new Pair(type, dato));
+                }
+
+                //oDAO.setListValues(new Pair<>(dato, tipos));
+
+                //oDAO.setListValues(new Pair<>(type, dato));
+//                for columans {
+//                switch (i)
+//                        case int:
+//                        obecjt dato = rs.getObject(colID, type);
+//                        break;
+//                        case String:
+//                        object dato = rs.getObject(signo, type);
+//                creas lista< Pair < tipo, dato> >
+//                se asigna a un nuevo DBManagedOBject <- Seter
+//                        
+//                        ese nuevo DBmanger lista.add (DBManagedObjects)
+//                
+//                }
+                //System.out.println(rs.getString("username"));
             }
+
+            lista.add(oDAO);
 
             cn.close();
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("Se produjo un error al conectarse: " + ex.getMessage());
         }
 
+        //return lista;<- Esta llena de DBManagedObjects
         return lista;
+    }
+
+    @Override
+    public List<?> ListBy(String campo, String criterio) {
+        return null;
     }
 
 }

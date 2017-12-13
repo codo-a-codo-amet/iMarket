@@ -18,6 +18,22 @@ public class DBManagedObject {
     public List<String> listAll;
     public String nameTable;
 
+    public void setListColumns(List<String> listColumns) {
+        this.listColumns = listColumns;
+    }
+
+    public void setListValues(List<Pair<String, String>> listValues) {
+        this.listValues = listValues;
+    }
+
+    public void setListAll(List<String> listAll) {
+        this.listAll = listAll;
+    }
+
+    public void setNameTable(String nameTable) {
+        this.nameTable = nameTable;
+    }
+
     public DBManagedObject(){
         listValues = new ArrayList<>();
     }
@@ -38,7 +54,9 @@ public class DBManagedObject {
         return listAll;
     }
 
-
+    public String getMensaje(String mensaje){
+        return mensaje;
+    }
 
 
 

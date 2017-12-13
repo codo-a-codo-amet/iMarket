@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package imarket;
+package controller;
 
-import java.awt.Event;
+import java.util.*;
+import model.DBManagedObject;
 
 /**
  *
- * @author alumno
+ * @author wceba
  */
-public interface IViewEventListener {
-    public void listen(Event event);
+public interface IController {
+    
+    public List<?> listValues(DBManagedObject obj);
+    
 }
