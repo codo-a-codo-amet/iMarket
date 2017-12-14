@@ -97,7 +97,7 @@ private List<IViewEventListener> list_listeners;
         eng.locationProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                System.out.println("QUe?");
+                System.out.println(observable.getValue());
             }
         });
            eng.documentProperty().addListener(
